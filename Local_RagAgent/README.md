@@ -1,46 +1,60 @@
-## 🦙 Local RAG Agent with Llama 3.2
-This application implements a Retrieval-Augmented Generation (RAG) system using Llama 3.2 via Ollama, with Qdrant as the vector database.
+🦙 Local RAG Agent with Llama 3.2
 
+This project demonstrates a fully local Retrieval-Augmented Generation (RAG) system, designed for privacy, efficiency, and independence from cloud APIs. It uses Llama 3.2 as the core language model (served through Ollama
+) and Qdrant as the vector database for fast semantic search. The application provides an interactive interface where you can query custom documents and receive context-aware answers generated entirely on your local machine.
 
-### Features
-- Fully local RAG implementation
-- Powered by Llama 3.2 through Ollama
-- Vector search using Qdrant
-- Interactive playground interface
-- No external API dependencies
+✨ Key Features
 
-### How to get Started?
+🔒 100% Local Setup – Runs entirely on your machine, ensuring full data privacy (no third-party APIs).
 
-1. Clone the GitHub repository
-```bash
-https://github.com/manireddy11/RAG_-with-open-source-models-.git
-```
+🦙 Llama 3.2 via Ollama – Leverages the latest open Llama model with optimized inference through Ollama.
 
-2. Install the required dependencies:
+📚 Retrieval-Augmented Generation (RAG) – Enhances Llama’s responses with facts pulled from your own documents.
 
-```bash
-cd awesome-llm-apps/rag_tutorials/local_rag_agent
-pip install -r requirements.txt
-```
+🔍 Qdrant Vector Search – Stores document embeddings and retrieves the most relevant chunks efficiently.
 
-3. Install and start [Qdrant](https://qdrant.tech/) vector database locally
+🖥️ Interactive Playground – Streamlit-based UI for uploading documents, asking questions, and viewing contextual responses.
 
-```bash
-docker pull qdrant/qdrant
-docker run -p 6333:6333 qdrant/qdrant
-```
+⚡ Scalable & Extensible – Can be expanded with additional models, embedding providers, or larger datasets.
 
-4. Install [Ollama](https://ollama.com/download) and pull Llama 3.2 for LLM and OpenHermes as the embedder for OllamaEmbedder
-```bash
-ollama pull llama3.2
-ollama pull openhermes
-```
+🛠️ How It Works
 
-4. Run the AI RAG Agent 
-```bash
-python local_rag_agent.py
-```
+Document Ingestion
 
-5. Open your web browser and navigate to the URL provided in the console output to interact with the RAG agent through the playground interface.
+Upload text, PDF, or markdown files.
 
+Each document is split into chunks and embedded into high-dimensional vectors.
 
+Embeddings are stored inside the Qdrant vector database.
+
+User Query
+
+Enter a natural language question in the chat interface.
+
+Retrieval
+
+The system queries Qdrant to fetch the top-N most relevant chunks based on semantic similarity.
+
+Augmented Prompting
+
+Retrieved context is combined with the user’s query and passed to Llama 3.2.
+
+Response Generation
+
+Llama generates a grounded answer that uses both its own reasoning and the retrieved knowledge.
+
+Display & History
+
+The UI shows the AI’s response, the retrieved sources, and maintains a searchable conversation history.
+
+🔧 Tech Stack
+
+LLM → Llama 3.2
+ served locally via Ollama
+
+Vector Database → Qdrant
+
+Frontend → Streamlit
+ for the interactive interface
+
+Embeddings → Can use Ollama’s built-in embedding models or alternatives like SentenceTransformers
